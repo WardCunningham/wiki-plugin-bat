@@ -1,0 +1,37 @@
+{
+  "title": "About Bat Plugin",
+  "story": [
+  {
+    "type": "paragraph",
+    "id": "3c556dbb0af9411e",
+    "text": "Here we describe the purpose of the plugin and include a sample."
+  },
+  {
+    "type": "bat",
+    "id": "aa34c76c5cbb7e25",
+    "text": "This is text in the new plugin. You can *double-click* to edit it too."
+  }
+],
+  "journal": [
+  {
+    "type": "create",
+    "item": {
+      "title": "About Bat Plugin",
+      "story": [
+  {
+    "type": "paragraph",
+    "id": "3c556dbb0af9411e",
+    "text": "Here we describe the purpose of the plugin and include a sample."
+  },
+  {
+    "type": "bat",
+    "id": "aa34c76c5cbb7e25",
+    "text": "This is text in the new plugin. You can *double-click* to edit it too."
+  }
+]
+    },
+    "date": 1518992777000,
+    "certificate": "from mkplugin.sh"
+  }
+]
+}
