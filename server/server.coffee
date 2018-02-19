@@ -5,15 +5,23 @@ startServer = (params) ->
   app = params.app
   argv = params.argv
 
-  log = [{date: Date.now(), text: 'start server'}]
+  logs = {}
 
-  app.post '/plugin/bat/:thing', (req, res) ->
+  log = (slug) ->
+    logs[slug] ||= [{date: Date.now(), text: 'start page'}]
+
+  add = (slug, text) ->
+    list = log slug
+    date = Date.now()
+    list.unshift {date, text}
+    list.pop while list.length > 10
+
+  app.post '/plugin/bat/:slug/:thing', (req, res) ->
+    slug = req.params.slug
     thing = req.params.thing
-    log.unshift {date: Date.now(), text: thing}
-    log.pop while log.length > 10
-    res.json log
+    add slug, thing
 
-  app.get '/plugin/bat/log', (req, res) ->
-    res.json log
+  app.get '/plugin/bat/:slug/log', (req, res) ->
+    res.json log req.params.slug
 
 module.exports = {startServer}

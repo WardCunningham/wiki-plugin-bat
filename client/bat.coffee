@@ -43,6 +43,8 @@ emit = ($item, item) ->
   """
 
 bind = ($item, item) ->
+  slug = $item.parents('.page').attr('id').split('_')[0]
+
   $item.dblclick -> wiki.textEditor $item, item
 
   refresh = ->
@@ -51,12 +53,12 @@ bind = ($item, item) ->
 
   $item.find('button').click (e) ->
     verb = $(e.target).text()
-    $.post "/plugin/bat/#{verb}"
+    $.post "/plugin/bat/#{slug}/#{verb}"
     log.unshift {date: Date.now(), text: "post #{verb}"}
     refresh()
 
   watch = ->
-    $.getJSON "/plugin/bat/log", (data) ->
+    $.getJSON "/plugin/bat/#{slug}/log", (data) ->
       log = data
       refresh()
 
