@@ -5,8 +5,15 @@ startServer = (params) ->
   app = params.app
   argv = params.argv
 
-  app.get '/plugin/bat/:thing', (req, res) ->
+  log = [{date: Date.now(), text: 'start server'}]
+
+  app.post '/plugin/bat/:thing', (req, res) ->
     thing = req.params.thing
-    res.json {thing}
+    log.unshift {date: Date.now(), text: thing}
+    log.pop while log.length > 10
+    res.json log
+
+  app.get '/plugin/bat/log', (req, res) ->
+    res.json log
 
 module.exports = {startServer}
